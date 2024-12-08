@@ -17,7 +17,7 @@ CREATE TABLE clients (
     client_surname VARCHAR(100) NOT NULL,
     birthday DATE NOT NULL,
     gender VARCHAR(10) CHECK (gender IN ('male', 'female')),
-    registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    registration_date DATE DEFAULT CURRENT_DATE;,
     address_id UUID,
     FOREIGN KEY (address_id) REFERENCES addresses(id)
 );
