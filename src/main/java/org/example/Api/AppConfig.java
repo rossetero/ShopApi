@@ -11,10 +11,10 @@ import javax.sql.DataSource;
 
 @Configuration
 @PropertySource("classpath:db.properties")
-@ComponentScan(basePackages = {"org.example.Api.repositories"})
+@ComponentScan(basePackages = {"org.example.Api"})
 public class AppConfig {
 
-    @Value( "${db.driver.name}" )
+    @Value("${db.driver.name}")
     private String driverClassName;
     @Value("${db.url}")
     private String dbUrl;
