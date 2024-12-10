@@ -2,6 +2,7 @@ package org.example.Api.services;
 
 import org.example.Api.dto.AddressDTO;
 import org.example.Api.dto.ClientDTO;
+import org.example.Api.exceptions.ClientNotFoundException;
 import org.example.Api.mappers.ClientMapper;
 import org.example.Api.models.Address;
 import org.example.Api.models.Client;
@@ -35,6 +36,12 @@ public class ClientServiceImpl implements ClientService {
                     return clientMapper.toDTO(client, addressDTO);
                 })
                 .toList();
+    }
+
+    @Override
+    public ClientDTO getClientByNameSurname(String name, String surname) {
+        Client client = clientRepository.findClientByNameSurname(name, surname).orElseThrow(() -> new ClientNotFoundException(name, surname));
+        return clientMapper.toDTO(client, addressService.getAddressById(client.getAddressId()));
     }
 
 }

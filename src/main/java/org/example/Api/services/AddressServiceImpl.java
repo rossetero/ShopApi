@@ -1,11 +1,14 @@
 package org.example.Api.services;
 
 import org.example.Api.dto.AddressDTO;
+import org.example.Api.exceptions.AddressNotFoundException;
 import org.example.Api.mappers.AddressMapper;
 import org.example.Api.repositories.AddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 
+import java.util.NoSuchElementException;
 import java.util.UUID;
 
 @Service
@@ -21,7 +24,6 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public AddressDTO getAddressById(UUID id) {
-        //если null кидать в контроллер 404 а пока верим что все есть
-        return addressMapper.toDTO(addressRepository.findAddressById(id).get());
+        return addressMapper.toDTO(addressRepository.findAddressById(id).orElseThrow(() -> new AddressNotFoundException(id)));
     }
 }

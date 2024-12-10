@@ -3,6 +3,7 @@ package org.example.Api.repositories;
 import org.example.Api.models.Address;
 import org.example.Api.models.Client;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -53,11 +54,14 @@ public class ClientRepositoryImpl implements ClientRepository {
     }
 
     @Override
-    public Optional<Client> findClientByNameSurname(String name, String surname) { //добавить вывод зависимого адреса
-        Client c = jdbcTemplate.queryForObject(
-                "select * from clients where client_name=? and client_surname=?;",
-                clientRowMapper, name, surname);
-        return Optional.ofNullable(c);
+    public Optional<Client> findClientByNameSurname(String name, String surname) {
+        try {//добавить вывод зависимого адреса
+            return Optional.ofNullable(jdbcTemplate.queryForObject(
+                    "select * from clients where client_name=? and client_surname=?;",
+                    clientRowMapper, name, surname));
+        } catch (EmptyResultDataAccessException e) {
+            return Optional.empty();
+        }
     }
 
     @Override
