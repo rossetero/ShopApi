@@ -44,4 +44,11 @@ public class ClientServiceImpl implements ClientService {
         return clientMapper.toDTO(client, addressService.getAddressById(client.getAddressId()));
     }
 
+    @Override
+    public void saveClient(ClientDTO clientDTO) {
+        //clientRepository.saveClient(clientMapper.toModel(clientDTO));
+        addressService.saveAddress(clientDTO.getAddress());
+
+    }
+
 }

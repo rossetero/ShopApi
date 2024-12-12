@@ -13,7 +13,7 @@ public class ClientDTO {
     private String gender;
     private LocalDateTime registrationDate;
     private AddressDTO address;
-
+    
     public ClientDTO(UUID id, String clientName, String clientSurname, LocalDate birthday, String gender, LocalDateTime registrationDate, AddressDTO address) {
         this.id = id;
         this.clientName = clientName;

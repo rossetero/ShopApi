@@ -38,7 +38,7 @@ public class ClientRepositoryImpl implements ClientRepository {
     @Override
     public void saveClient(Client client) {
         String q = "INSERT INTO clients(id, client_name, client_surname, birthday, gender, registration_date, address_id) VALUES(?,?,?,?,?,?,?)";
-        jdbcTemplate.update(q, UUID.randomUUID(), client.getClientName(),
+        jdbcTemplate.update(q, client.getId(), client.getClientName(),
                 client.getClientSurname(),
                 client.getBirthday(),
                 client.getGender(),

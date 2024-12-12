@@ -10,4 +10,6 @@ public interface ClientService {
     public List<ClientDTO> getAllClients();
 
     public ClientDTO getClientByNameSurname(String name, String surname);
+
+    public void saveClient(ClientDTO clientDTO);
 }
