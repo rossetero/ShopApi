@@ -1,12 +1,20 @@
 package org.example.Api.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Null;
+
 import java.util.UUID;
 
 
 public class AddressDTO {
+    @Null(message = "ID is calculated on backend. Set this value null")
     private UUID id;
+    @NotBlank(message = "Country must not be blank")
     private String country;
+    @NotBlank(message = "City must not be blank")
     private String city;
+    @NotBlank(message = "Street must not be blank")
     private String street;
 
 
@@ -35,7 +43,7 @@ public class AddressDTO {
 
     // Сеттеры
     public void setId(UUID id) {
-        this.id = id;
+        this.id = null;
     }
 
     public void setCountry(String country) {

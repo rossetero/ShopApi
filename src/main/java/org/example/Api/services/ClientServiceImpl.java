@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class ClientServiceImpl implements ClientService {
@@ -46,8 +47,13 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public void saveClient(ClientDTO clientDTO) {
-        //clientRepository.saveClient(clientMapper.toModel(clientDTO));
-        addressService.saveAddress(clientDTO.getAddress());
+        UUID addressId = UUID.randomUUID();
+        addressService.saveAddress(clientDTO.getAddress(), addressId);
+        Client client = clientMapper.toModel(clientDTO);
+        client.setId(UUID.randomUUID());
+        client.setAddressId(addressId);
+        clientRepository.saveClient(client);
+
 
     }
 

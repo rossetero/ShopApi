@@ -29,7 +29,9 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public void saveAddress(AddressDTO addressDTO) {
-        addressRepository.saveAddress(addressMapper.toModel(addressDTO));
+    public void saveAddress(AddressDTO addressDTO, UUID addressId) {
+        Address address = addressMapper.toModel(addressDTO);
+        address.setId(addressId);
+        addressRepository.saveAddress(address);
     }
 }

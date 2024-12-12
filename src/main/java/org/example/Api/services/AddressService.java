@@ -7,5 +7,6 @@ import java.util.UUID;
 
 public interface AddressService {
     AddressDTO getAddressById(UUID id);
-    void saveAddress(AddressDTO addressDTO);
+
+    void saveAddress(AddressDTO addressDTO, UUID addressId);
 }
