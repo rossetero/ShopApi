@@ -1,15 +1,25 @@
 package org.example.Api.services;
 
+import org.example.Api.dto.AddressDTO;
 import org.example.Api.dto.ClientDTO;
-import org.springframework.stereotype.Service;
+import org.example.Api.models.Client;
 
 import java.util.List;
+import java.util.UUID;
 
 
 public interface ClientService {
-    public List<ClientDTO> getAllClients();
+    Client getClientById(UUID clientId);
 
-    public ClientDTO getClientByNameSurname(String name, String surname);
+    List<ClientDTO> getAllClients(int offset, int limit);
 
-    public void saveClient(ClientDTO clientDTO);
+    ClientDTO getClientByNameSurname(String name, String surname);
+
+    void saveClient(ClientDTO clientDTO);
+
+    void deleteClientById(UUID clientId);
+
+    void updateClientAddress(UUID clientId, AddressDTO addressDTO);
+
+
 }

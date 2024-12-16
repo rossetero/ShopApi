@@ -34,4 +34,16 @@ public class AddressServiceImpl implements AddressService {
         address.setId(addressId);
         addressRepository.saveAddress(address);
     }
+
+    @Override
+    public void deleteAddress(UUID addressId) {
+        addressRepository.deleteAddress(addressId);
+    }
+
+    @Override
+    public void updateAddress(AddressDTO addressDTO, UUID addressId) {
+        Address address = addressMapper.toModel(addressDTO);
+        address.setId(addressId);
+        addressRepository.updateAddress(address);
+    }
 }

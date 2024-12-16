@@ -9,4 +9,8 @@ public interface AddressService {
     AddressDTO getAddressById(UUID id);
 
     void saveAddress(AddressDTO addressDTO, UUID addressId);
+
+    void deleteAddress(UUID addressId);
+
+    void updateAddress(AddressDTO addressDTO, UUID addressId);
 }

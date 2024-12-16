@@ -20,8 +20,7 @@ public class ClientDTO {
     @NotNull(message = "Gender is null")
     @Pattern(regexp = "male|female", message = "Gender must be either 'male' or 'female'")
     private String gender;
-    @NotNull
-    @PastOrPresent(message = "Invalid registration date")
+    @Null(message = "Registration Time is calculated on backend. Set this value null")
     private LocalDateTime registrationDate;
     @Valid
     @NotNull(message = "Address must be set")

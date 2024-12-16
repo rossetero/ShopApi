@@ -48,14 +48,12 @@ public class ClientRepositoryImpl implements ClientRepository {
 
     @Override
     public void deleteClient(UUID id) {
-        //UUID addressId =(UUID) jdbcTemplate.queryForObject("select address_id from clients where id=?", Object.class,id);
-        //addressRepository.deleteAddress(addressId);
         jdbcTemplate.update("DELETE FROM clients WHERE id=?;", id); //добавить удаление зависимого адреса
     }
 
     @Override
     public Optional<Client> findClientByNameSurname(String name, String surname) {
-        try {//добавить вывод зависимого адреса
+        try {
             return Optional.ofNullable(jdbcTemplate.queryForObject(
                     "select * from clients where client_name=? and client_surname=?;",
                     clientRowMapper, name, surname));
@@ -65,7 +63,14 @@ public class ClientRepositoryImpl implements ClientRepository {
     }
 
     @Override
-    public List<Client> findAll() { //добавить вывод зависимого адреса
+    public List<Client> findAll(int offset, int limit) { //добавить вывод зависимого адреса
+        return jdbcTemplate.query(
+                "select * from clients limit ? offset ?;",
+                clientRowMapper, limit, offset);
+    }
+
+    @Override
+    public List<Client> findAll() {
         return jdbcTemplate.query(
                 "select * from clients;",
                 clientRowMapper);
@@ -73,8 +78,19 @@ public class ClientRepositoryImpl implements ClientRepository {
 
     @Override
     public void updateClientAddress(UUID clientId, Address address) {
-        UUID addressId = (UUID) jdbcTemplate.queryForObject("select address_id from clients where id=?", Object.class, clientId);
+        UUID addressId = jdbcTemplate.queryForObject("select address_id from clients where id=?", UUID.class, clientId);
         address.setId(addressId);
         addressRepository.updateAddress(address);
+    }
+
+    @Override
+    public Optional<Client> findClientById(UUID clientId) {
+        try {
+            return Optional.ofNullable(jdbcTemplate.queryForObject(
+                    "select * from clients where id=?;",
+                    clientRowMapper, clientId));
+        } catch (EmptyResultDataAccessException e) {
+            return Optional.empty();
+        }
     }
 }
