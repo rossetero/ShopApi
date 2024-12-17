@@ -1,10 +1,15 @@
-package org.example.Api.models;
+package org.example.Api.entities;
 
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.UUID;
 
+@Entity
+@Table(name = "images")
 public class Image {
     private UUID id;
     private byte[] image;
@@ -30,7 +35,6 @@ public class Image {
         this.image = image;
     }
 
-    // Перегрузка метода toString
     @Override
     public String toString() {
         return "Image{" +
@@ -38,8 +42,7 @@ public class Image {
                 ", imageSize=" + (image != null ? image.length : 0) + " bytes" +
                 '}';
     }
-
-    // Реализация метода equals
+    
     @Override
     public boolean equals(Object other) {
         if (this == other) return true;

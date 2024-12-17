@@ -2,7 +2,7 @@ package org.example.Api.mappers;
 
 import org.example.Api.dto.AddressDTO;
 import org.example.Api.dto.ClientDTO;
-import org.example.Api.models.Address;
+import org.example.Api.entities.Address;
 import org.springframework.stereotype.Component;
 
 @Component

@@ -3,13 +3,11 @@ package org.example.Api.services;
 import org.example.Api.dto.AddressDTO;
 import org.example.Api.exceptions.AddressNotFoundException;
 import org.example.Api.mappers.AddressMapper;
-import org.example.Api.models.Address;
+import org.example.Api.entities.Address;
 import org.example.Api.repositories.AddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
 
-import java.util.NoSuchElementException;
 import java.util.UUID;
 
 @Service

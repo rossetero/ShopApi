@@ -1,6 +1,18 @@
 package org.example.Api.controllers;
 
-public class GlobalExceptionHandler {
-}
+import org.example.Api.dto.ServerResponseDTO;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 
-// TODO вот сюда вынести все ошибки включая ошибку синтаксически неправильного json но для разнообразия оставить try catch в get методах
+@ControllerAdvice
+public class GlobalExceptionHandler {
+
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity<ServerResponseDTO> handleHttpMessageNotReadableException(HttpMessageNotReadableException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ServerResponseDTO(HttpStatus.BAD_REQUEST.value(), "Wrong JSON Syntax"));
+
+    }
+}

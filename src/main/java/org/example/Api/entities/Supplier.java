@@ -1,13 +1,25 @@
-package org.example.Api.models;
+package org.example.Api.entities;
 
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.Objects;
 import java.util.UUID;
 
+@Entity
+@Table(name = "suppliers")
 public class Supplier {
+    @Id
+    @NotNull
     private UUID id;
     private String name;
+    @Column(name = "address_id")
     private UUID addressId;
+    @Column(name = "phone_number")
     private String phoneNumber;
 
     public Supplier(UUID id, String name, UUID addressId, String phoneNumber) {

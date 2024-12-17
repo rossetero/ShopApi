@@ -1,4 +1,4 @@
-package org.example.Api.models;
+package org.example.Api.entities;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

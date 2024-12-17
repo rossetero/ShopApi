@@ -4,7 +4,7 @@ import org.example.Api.dto.AddressDTO;
 import org.example.Api.dto.ClientDTO;
 import org.example.Api.exceptions.ClientNotFoundException;
 import org.example.Api.mappers.ClientMapper;
-import org.example.Api.models.Client;
+import org.example.Api.entities.Client;
 import org.example.Api.repositories.ClientRepository;
 import org.example.Api.repositories.ClientRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,8 +39,8 @@ public class ClientServiceImpl implements ClientService {
         List<Client> clients = null;
         if (offset == 0 && limit == 0) {
             clients = clientRepository.findAll();
-        } else{
-            clients = clientRepository.findAll(offset,limit);
+        } else {
+            clients = clientRepository.findAll(offset, limit);
         }
         return clients.stream()
                 .map(client -> {
@@ -80,9 +80,9 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public void updateClientAddress(UUID clientId, AddressDTO addressDTO) {
-        Client client=clientRepository.findClientById(clientId)
-                .orElseThrow(()->new ClientNotFoundException(clientId));
-        addressService.updateAddress(addressDTO,client.getAddressId());
+        Client client = clientRepository.findClientById(clientId)
+                .orElseThrow(() -> new ClientNotFoundException(clientId));
+        addressService.updateAddress(addressDTO, client.getAddressId());
     }
 
 }

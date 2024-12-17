@@ -1,19 +1,32 @@
-package org.example.Api.models;
+package org.example.Api.entities;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 
 import java.util.Objects;
 import java.util.UUID;
 
-
+@Entity
+@Table(name = "products")
 public class Product {
+    @Id
+    @NotNull
     private UUID id;
     private String name;
     private String category;
     private Double price;
+    @Column(name = "available_stock")
     private Integer availableStock;
+    @Column(name = "last_update_date")
     private LocalDate lastUpdateDate;
+    @Column(name = "supplier_id")
     private UUID supplierId;
+    @Column(name = "image_id")
     private UUID imageId;
 
     public Product(UUID id, String name, String category, Double price, Integer availableStock, LocalDate lastUpdateDate, UUID supplierId, UUID imageId) {

@@ -2,7 +2,7 @@ package org.example.Api.services;
 
 import org.example.Api.dto.AddressDTO;
 import org.example.Api.dto.ClientDTO;
-import org.example.Api.models.Client;
+import org.example.Api.entities.Client;
 
 import java.util.List;
 import java.util.UUID;

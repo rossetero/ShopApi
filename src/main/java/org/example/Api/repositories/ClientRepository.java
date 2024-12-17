@@ -1,9 +1,8 @@
 package org.example.Api.repositories;
 
-import org.example.Api.models.Address;
-import org.example.Api.models.Client;
+import org.example.Api.entities.Address;
+import org.example.Api.entities.Client;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;

@@ -1,6 +1,7 @@
 package org.example.Api.repositories;
 
-import org.example.Api.models.Address;
+import org.example.Api.entities.Address;
+
 import java.util.Optional;
 import java.util.UUID;
 

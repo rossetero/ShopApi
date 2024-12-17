@@ -11,7 +11,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @PropertySource("classpath:db.properties")
-@ComponentScan(basePackages = {"org.example.Api"})
+//@ComponentScan(basePackages = {"org.example.Api"}) - boot отсканировал сам
 public class AppConfig {
 
     @Value("${db.driver.name}")
@@ -33,3 +33,6 @@ public class AppConfig {
         return dataSource;
     }
 }
+
+//когда буду делать бэк для сайта то там вынести это дело в yaml
+//а в этом проекте пусть так для наглядности
